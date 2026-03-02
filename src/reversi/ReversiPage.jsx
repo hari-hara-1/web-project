@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { BOARD_SIZE, EMPTY, BLACK, WHITE, DIRECTIONS } from './constants';
-import './App.css';
+import './ReversiPage.css';
 
-function App() {
+function ReversiPage() {
   // Initialize the board with the standard Reversi starting position
   const initializeBoard = () => {
     const board = Array(BOARD_SIZE).fill(null).map(() => Array(BOARD_SIZE).fill(EMPTY));
@@ -165,7 +165,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <a href="index.html" className="home-btn">← Home</a>
+        <a href="/" className="home-btn">← Home</a>
         <div className="title">
           <h1>◉ Reversi</h1>
           <p className="subtitle">Flip the game in your favor</p>
@@ -227,5 +227,5 @@ function App() {
   );
 }
 
-export default App;
+export default ReversiPage;
 
