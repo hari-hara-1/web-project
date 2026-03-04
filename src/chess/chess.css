@@ -41,6 +41,39 @@ body {
   margin: 0;
 }
 
+/* Home Button - Top left */
+.home-btn {
+  position: absolute !important;
+  top: 20px !important;
+  left: 20px !important;
+
+  padding: 10px 18px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+
+  background: linear-gradient(
+    to right,
+    #d4a96a,
+    #c49a5a,
+    #b8863a
+  ) !important;
+
+  color: #3a1e0e !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4) 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+  z-index: 100 !important;
+}
+
+.home-btn:hover {
+  transform: translateX(-3px) !important;
+  filter: brightness(1.1) !important;
+}
+
 /* BOARD AREA */
 .board-area {
   grid-area: board;

@@ -221,6 +221,9 @@ function ChessPage() {
     <>
       <div className="chess-container">
 
+        {/* HOME BUTTON - Top left */}
+        <a href="/" className="home-btn">← Home</a>
+
         {/* HEADER - Centered at top */}
         <div className="game-title">
           Chess Game
