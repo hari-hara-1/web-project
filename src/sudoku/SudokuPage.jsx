@@ -112,7 +112,22 @@ function SudokuPage() {
       }
     }
   };
+  const isBoxComplete = (rowIndex, colIndex) => {
+  if (!board || board.length === 0) return false;
 
+  // Determine the top-left corner of the 3x3 box
+  const boxRowStart = Math.floor(rowIndex / 3) * 3;
+  const boxColStart = Math.floor(colIndex / 3) * 3;
+
+  const boxCells = [];
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      boxCells.push(board[boxRowStart + r][boxColStart + c]);
+    }
+  }
+
+  return boxCells.every((cell) => cell !== "");
+};
   const handleErase = () => {
     if (!selectedCell || isPaused) return;
     const { r, c } = selectedCell;
@@ -195,7 +210,7 @@ function SudokuPage() {
             const isSelected = selectedCell?.r === r && selectedCell?.c === c;
             const rowFinished = isRowComplete(r);
             const colFinished = isColComplete(c);
-
+            const boxFinished = isBoxComplete(r, c);
             return (
               <div
                 key={`${r}-${c}`}
@@ -204,6 +219,7 @@ function SudokuPage() {
                   ${isUserFilled ? "tile-user" : ""}
                   ${rowFinished ? "row-complete" : ""} 
                   ${colFinished ? "col-complete" : ""}
+                  ${boxFinished ? "box-complete": ""}
                   ${(r + 1) % 3 === 0 && r !== 8 ? "horizontal-line" : ""}
                   ${(c + 1) % 3 === 0 && c !== 8 ? "vertical-line" : ""}
                 `}
