@@ -3,24 +3,27 @@
 }
 
 body {
-  position: fixed;
-  inset: 0;
-  margin: 0;
-  overflow: hidden;
-  font-family: sans-serif;
+  margin: 0 !important;
+  height: 100vh !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  overflow: hidden !important;
+  font-family: sans-serif !important;
+
+  background: radial-gradient(#6b3d1c, #1c0f07) !important;
 }
 
-/* MAIN PAGE CONTAINER */
 .chess-container {
-  height: 100vh;
-  width: 100vw;
+  width: min(1400px, 95vw);
+  height: min(900px, 92vh);
 
-  display: flex;
-  flex-direction: row;
-  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
   gap: 60px;
-
-  background: radial-gradient(#6b3d1c, #1c0f07);
 }
 
 /* BOARD AREA */
@@ -87,8 +90,8 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: space-between; /* top + bottom */
+  align-items: center;            /* center horizontally */
 
   padding: 20px 0;
 }
@@ -110,7 +113,7 @@ body {
 .new-game-btn {
   padding: 15px 40px;
   border-radius: 10px;
-
+ margin-top: 30px;
   background: #e6c15a;
   color: #3a1e0e;
 
@@ -221,4 +224,88 @@ body {
     opacity: 0;
     transform: translate(-50%, 30px);
   }
+}
+
+.board-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+}
+.board-row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.board-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.board-controls button {
+  padding: 12px 20px;
+  border-radius: 8px;
+
+  border: none;
+  background: #e6c15a;
+  color: #3a1e0e;
+
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: transform 0.2s;
+}
+
+.board-controls button:hover {
+  transform: translateY(-2px);
+}
+.captured {
+  width: min(80vh, 900px);
+
+  padding: 10px;
+
+  border-radius: 6px;
+
+  background: rgba(255,255,255,0.08);
+  color: #f6e1a5;
+
+  text-align: center;
+}
+.game-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100%;
+}
+.game-title {
+  font-size: 3rem;
+  color: #f6e1a5;
+  font-weight: bold;
+}
+.pgn-panel {
+  width: 100%;
+  max-width: 420px;
+
+  height: 420px;
+
+  background: rgba(0,0,0,0.45);
+
+  border-radius: 10px;
+  padding: 20px;
+
+  color: #f6e1a5;
+
+  overflow-y: auto;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+.pgn-panel pre {
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 15px;
 }

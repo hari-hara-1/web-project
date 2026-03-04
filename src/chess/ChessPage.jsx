@@ -106,85 +106,128 @@ function handleDropPiece(from, to) {
 }
   const kingInCheck = getKingSquare();
 
-  return (
+return (
+  <>
     <div className="chess-container">
-      {/* BOARD */}
-      <div className="board">
-        {board.flat().map((square, i) => {
-          const row = Math.floor(i / 8);
-          const col = i % 8;
 
-          const sq = String.fromCharCode(97 + col) + (8 - row);
-          const isDark = (row + col) % 2 === 1;
+      {/* LEFT SIDE */}
+      <div className="board-area">
 
-          return (
-            <div
-              key={sq}
-              className={`square ${isDark ? "dark" : "light"} 
-${moves.includes(sq) ? "highlight" : ""} 
-${kingInCheck === sq ? "check" : ""}`}
-              onClick={() => handleSquareClick(row, col)}
-              onDragOver={(e) => {
-                e.preventDefault();
-                e.dataTransfer.dropEffect = "move";
-              }}
-              onDrop={(e) => {
-                const from = e.dataTransfer.getData("square");
-                handleDropPiece(from, sq);
-              }}
-              onDragEnd={() => {
-                setSelected(null);
-                setMoves([]);
-              }}
-            >
-              {square && (
-                <img
-                  src={pieceMap[square.color + square.type]}
-                  className="piece"
-                  draggable
-                  onDragStart={(e) => {
-                    e.dataTransfer.setData("square", sq);
-                    e.dataTransfer.effectAllowed = "move";
-
-                    console.log("DRAG START", sq);
-
-                    const legalMoves = game.moves({
-                      square: sq,
-                      verbose: true,
-                    });
-
-                    setSelected(sq);
-                    setMoves(legalMoves.map((m) => m.to));
-                  }}
-                  alt=""
-                />
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* SIDEBAR */}
-      <div className="sidebar">
-        <div className="panel-header">
-          <h1>Classic Chess</h1>
-          <p>Two player match</p>
+        {/* Captured by black */}
+        <div className="captured white-captured">
+          White pieces captured by black
         </div>
 
+        {/* Board + controls */}
+        <div className="board-row">
+
+          {/* BOARD */}
+          <div className="board">
+            {board.flat().map((square, i) => {
+              const row = Math.floor(i / 8);
+              const col = i % 8;
+
+              const sq = String.fromCharCode(97 + col) + (8 - row);
+              const isDark = (row + col) % 2 === 1;
+
+              return (
+                <div
+                  key={sq}
+                  className={`square ${isDark ? "dark" : "light"} 
+                  ${moves.includes(sq) ? "highlight" : ""} 
+                  ${kingInCheck === sq ? "check" : ""}`}
+                  onClick={() => handleSquareClick(row, col)}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = "move";
+                  }}
+                  onDrop={(e) => {
+                    const from = e.dataTransfer.getData("square");
+                    handleDropPiece(from, sq);
+                  }}
+                  onDragEnd={() => {
+                    setSelected(null);
+                    setMoves([]);
+                  }}
+                >
+                  {square && (
+                    <img
+                      src={pieceMap[square.color + square.type]}
+                      className="piece"
+                      draggable
+                      onDragStart={(e) => {
+                        e.dataTransfer.setData("square", sq);
+                        e.dataTransfer.effectAllowed = "move";
+
+                        const legalMoves = game.moves({
+                          square: sq,
+                          verbose: true,
+                        });
+
+                        setSelected(sq);
+                        setMoves(legalMoves.map((m) => m.to));
+                      }}
+                      alt=""
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* BOARD CONTROLS */}
+          <div className="board-controls">
+            <button className="resign-btn">Resign</button>
+
+            <div className="turn-indicator">
+              {game.turn() === "w" ? "White to move" : "Black to move"}
+            </div>
+
+            <button className="draw-btn">Offer Draw</button>
+          </div>
+
+        </div>
+
+        {/* Captured by white */}
+        <div className="captured black-captured">
+          Black pieces captured by white
+        </div>
+
+      </div>
+
+      {/* RIGHT SIDE */}
+      <div className="game-panel">
+
+        <div className="game-title">
+          Chess Game
+        </div>
+
+        {/* PGN PANEL */}
+        <div className="pgn-panel">
+          <h3>Live PGN</h3>
+          <pre>{game.pgn()}</pre>
+        </div>
+
+        {/* NEW GAME BUTTON */}
         <button
           className="new-game-btn"
           onClick={() => window.location.reload()}
         >
           New Game
         </button>
+
       </div>
-      {snackbar && (
-  <div className="snackbar">
-    {snackbar}
-  </div>
-)}
+
     </div>
-  );
+
+    {/* SNACKBAR */}
+    {snackbar && (
+      <div className="snackbar">
+        {snackbar}
+      </div>
+    )}
+  </>
+);
 }
 
 export default ChessPage;
