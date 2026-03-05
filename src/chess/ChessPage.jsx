@@ -20,6 +20,23 @@ function ChessPage() {
   const [showGameOverPopup, setShowGameOverPopup] = useState(false);
   const [capturedByWhite, setCapturedByWhite] = useState([]);
   const [capturedByBlack, setCapturedByBlack] = useState([]);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [showNamePopup, setShowNamePopup] = useState(true);
+  const [whiteName, setWhiteName] = useState("White");
+  const [blackName, setBlackName] = useState("Black");
+  const [tempWhiteName, setTempWhiteName] = useState("");
+  const [tempBlackName, setTempBlackName] = useState("");
+
+  // Flip board when turn changes
+  useEffect(() => {
+    const currentTurn = game.turn();
+    // Flip board for black's turn (show from black's perspective)
+    if (currentTurn === "b" && !isFlipped) {
+      setIsFlipped(true);
+    } else if (currentTurn === "w" && isFlipped) {
+      setIsFlipped(false);
+    }
+  }, [board]);
 
   // Check for game over conditions
   useEffect(() => {
@@ -215,6 +232,37 @@ function ChessPage() {
     return game.turn() === "w" ? "White to move" : "Black to move";
   }
 
+  function handleNameSubmit(e) {
+    e.preventDefault();
+    setWhiteName(tempWhiteName.trim() || "White");
+    setBlackName(tempBlackName.trim() || "Black");
+    setShowNamePopup(false);
+  }
+
+  function handleNewGame() {
+    // Reset the game
+    window.location.reload();
+  }
+
+  function startNewGame() {
+    // Reset game state but keep names
+    setShowNamePopup(true);
+    setTempWhiteName("");
+    setTempBlackName("");
+    setBoard(game.reset().board());
+    setGameOver(false);
+    setGameOverMessage("");
+    setShowGameOverPopup(false);
+    setSelected(null);
+    setMoves([]);
+    setLastMove(null);
+    setCapturedByWhite([]);
+    setCapturedByBlack([]);
+    setIsDraw(false);
+    setDrawOffer(null);
+    setIsFlipped(false);
+  }
+
   const kingInCheck = getKingSquare();
 
   return (
@@ -227,6 +275,9 @@ function ChessPage() {
         {/* HEADER - Centered at top */}
         <div className="game-title">
           Chess Game
+          <div className="game-subtitle">
+            {whiteName} vs {blackName}
+          </div>
         </div>
 
         {/* LEFT SIDE */}
@@ -252,7 +303,7 @@ function ChessPage() {
           <div className="board-row">
 
             {/* BOARD */}
-            <div className="board">
+            <div className={`board ${isFlipped ? "flipped" : ""}`}>
               {board.flat().map((square, i) => {
                 const row = Math.floor(i / 8);
                 const col = i % 8;
@@ -367,7 +418,7 @@ function ChessPage() {
           {/* NEW GAME BUTTON */}
           <button
             className="new-game-btn"
-            onClick={() => window.location.reload()}
+            onClick={startNewGame}
           >
             New Game
           </button>
@@ -442,6 +493,41 @@ function ChessPage() {
                 No
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* NAME INPUT POPUP */}
+      {showNamePopup && (
+        <div className="modal-overlay">
+          <div className="modal-content name-modal">
+            <h2>Enter Player Names</h2>
+            <form onSubmit={handleNameSubmit}>
+              <div className="name-input-group">
+                <label htmlFor="whiteName">White Player:</label>
+                <input
+                  id="whiteName"
+                  type="text"
+                  value={tempWhiteName}
+                  onChange={(e) => setTempWhiteName(e.target.value)}
+                  placeholder="Enter white player's name"
+                  autoFocus
+                />
+              </div>
+              <div className="name-input-group">
+                <label htmlFor="blackName">Black Player:</label>
+                <input
+                  id="blackName"
+                  type="text"
+                  value={tempBlackName}
+                  onChange={(e) => setTempBlackName(e.target.value)}
+                  placeholder="Enter black player's name"
+                />
+              </div>
+              <button type="submit" className="modal-btn">
+                Start Game
+              </button>
+            </form>
           </div>
         </div>
       )}
