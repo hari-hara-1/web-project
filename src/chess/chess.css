@@ -263,6 +263,39 @@ body {
   font-size: 15px;
 }
 
+/* FEN PANEL */
+.fen-panel {
+  width: 100%;
+  max-width: 420px;
+  
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  padding: 12px 15px;
+  
+  color: #f6e1a5;
+  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fen-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #d4b97a;
+  flex-shrink: 0;
+}
+
+.fen-value {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #f6e1a5;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
 /* NEW GAME BUTTON */
 .new-game-btn {
   padding: 15px 40px;
@@ -521,6 +554,18 @@ body {
   
   .pgn-panel pre {
     font-size: 12px;
+  }
+  
+  .fen-panel {
+    padding: 10px 12px;
+  }
+  
+  .fen-label {
+    font-size: 0.85rem;
+  }
+  
+  .fen-value {
+    font-size: 0.75rem;
   }
   
   .new-game-btn {

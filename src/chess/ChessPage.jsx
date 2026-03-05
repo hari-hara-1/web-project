@@ -358,6 +358,12 @@ function ChessPage() {
             <pre>{game.pgn()}</pre>
           </div>
 
+          {/* FEN BAR */}
+          <div className="fen-panel">
+            <span className="fen-label">FEN:</span>
+            <span className="fen-value">{game.fen()}</span>
+          </div>
+
           {/* NEW GAME BUTTON */}
           <button
             className="new-game-btn"
