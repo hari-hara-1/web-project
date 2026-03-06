@@ -48,9 +48,9 @@ body {
 
 .light-glow {
   position: absolute;
-  top: -120px;
-  width: 600px;
-  height: 600px;
+  top: -7.5rem;
+  width: 37.5rem;
+  height: 37.5rem;
   background: radial-gradient(circle, rgba(255,200,100,0.6) 0%, transparent 70%);
   animation: glowPulse 3s infinite alternate;
 }
@@ -66,9 +66,9 @@ body {
 
 .title {
   font-size: 3rem;
-  margin-bottom: 70px;
+  margin-bottom: 4.375rem;
   text-align: center;
-  letter-spacing: 4px;
+  letter-spacing: 0.25rem;
 
   background: linear-gradient(90deg, #ffd369, #fff5c3, #ffd369);
   background-size: 200%;
@@ -89,7 +89,7 @@ body {
 
 .games-container {
   display: flex;
-  gap: 90px;
+  gap: 5.625rem;
 }
 
 /* ===============================
@@ -97,9 +97,9 @@ body {
 ================================= */
 
 .game-card {
-  width: 240px;
-  height: 240px;
-  border-radius: 20px;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,12 +111,12 @@ body {
 
   background: linear-gradient(145deg, #8b5a2b, #5c3b1e);
 
-  border: 3px solid rgba(255,215,120,0.6);
+  border: 0.1875rem solid rgba(255,215,120,0.6);
 
   box-shadow:
-    0 20px 40px rgba(0,0,0,0.6),
-    0 0 25px rgba(255,200,100,0.3),
-    inset 0 0 25px rgba(0,0,0,0.4);
+    0 1.25rem 2.5rem rgba(0,0,0,0.6),
+    0 0 1.5625rem rgba(255,200,100,0.3),
+    inset 0 0 1.5625rem rgba(0,0,0,0.4);
 
   animation: float 4s ease-in-out infinite;
   overflow: hidden;
@@ -125,7 +125,7 @@ body {
 /* Floating motion */
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-0.75rem); }
   100% { transform: translateY(0px); }
 }
 
@@ -166,8 +166,8 @@ body {
 .game-card:hover {
   transform: scale(1.15) rotate(2deg);
   box-shadow:
-    0 30px 60px rgba(0,0,0,0.8),
-    0 0 50px currentColor;
+    0 1.875rem 3.75rem rgba(0,0,0,0.8),
+    0 0 3.125rem currentColor;
 }
 
 /* ===============================
@@ -177,16 +177,16 @@ body {
 .game-card:active {
   transform: scale(0.9);
   box-shadow:
-    0 10px 20px rgba(0,0,0,0.8),
-    inset 0 0 40px rgba(0,0,0,0.6);
+    0 0.625rem 1.25rem rgba(0,0,0,0.8),
+    inset 0 0 2.5rem rgba(0,0,0,0.6);
 }
 
 /* Ripple burst */
 .game-card::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   background: rgba(255,255,255,0.4);
   border-radius: 50%;
   opacity: 0;
@@ -219,8 +219,8 @@ body {
 
 .footer-text {
   position: absolute;
-  bottom: 20px;
+  bottom: 1.25rem;
   font-size: 0.9rem;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;
   opacity: 0.7;
 }

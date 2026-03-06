@@ -163,6 +163,7 @@ function ReversiPage() {
   };
 
   return (
+    <div className='app-container'>
     <div className="app">
       <header className="app-header">
         <a href="/" className="home-btn">← Home</a>
@@ -223,6 +224,7 @@ function ReversiPage() {
           </button>
         )}
       </main>
+    </div>
     </div>
   );
 }
