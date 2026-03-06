@@ -163,6 +163,7 @@ function ReversiPage() {
   };
 
   return (
+    <div className="outer" align="center">
     <div className="app">
       <header className="app-header">
         <a href="/" className="home-btn">← Home</a>
@@ -175,7 +176,7 @@ function ReversiPage() {
       <main className="game">
         <div className="carrom-frame">
           <div className="board-container">
-            <div className="board">
+            <div className="reversi-board">
               {board.map((row, rowIndex) =>
                 row.map((cell, colIndex) => (
                   <div
@@ -223,6 +224,7 @@ function ReversiPage() {
           </button>
         )}
       </main>
+    </div>
     </div>
   );
 }
