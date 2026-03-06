@@ -360,61 +360,48 @@ function SudokuPage() {
 
         <p id="message">{message}</p>
 
-        {gameStarted && (
           <div id="board">
-            {board.length > 0 &&
-              board.map((row, r) =>
-                row.map((cell, c) => {
-                  const isInitial =
-                    initialBoard[r] && initialBoard[r][c] !== "";
-                  const isUserFilled = !isInitial && cell !== "";
-                  const isSelected =
-                    selectedCell?.r === r && selectedCell?.c === c;
-                  const rowFinished = isRowComplete(r);
-                  const colFinished = isColComplete(c);
-                  const boxFinished = isBoxComplete(r, c);
+  {(gameStarted ? board : Array(9).fill(Array(9).fill(""))).map((row, r) =>
+    row.map((cell, c) => {
+      const isInitial = gameStarted && initialBoard[r] && initialBoard[r][c] !== "";
+      const isUserFilled = gameStarted && !isInitial && cell !== "";
+      const isSelected = selectedCell?.r === r && selectedCell?.c === c;
 
-                  return (
-                    <div
-                      key={`${r}-${c}`}
-                      className={`tile 
-                      ${isInitial ? "tile-start" : ""} 
-                      ${isUserFilled ? "tile-user" : ""}
-                      ${isSelected ? "tile-selected" : ""}
-                      ${rowFinished ? "row-complete" : ""}
-                      ${colFinished ? "col-complete" : ""}
-                      ${boxFinished ? "box-complete" : ""}
-                      ${
-                        (r + 1) % 3 === 0 && r !== 8
-                          ? "horizontal-line"
-                          : ""
-                      }
-                      ${
-                        (c + 1) % 3 === 0 && c !== 8
-                          ? "vertical-line"
-                          : ""
-                      }`}
-                      onClick={() => handleCellClick(r, c)}
-                    >
-                      {!isPaused ? (
-                        cell !== "" ? (
-                          cell
-                        ) : (
-                          <div className="tile-note-container">
-                            {notes[r] && notes[r][c]
-                              ? notes[r][c].join("")
-                              : ""}
-                          </div>
-                        )
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                  );
-                })
-              )}
-          </div>
-        )}
+      const rowFinished = gameStarted ? isRowComplete(r) : false;
+      const colFinished = gameStarted ? isColComplete(c) : false;
+      const boxFinished = gameStarted ? isBoxComplete(r, c) : false;
+
+      return (
+        <div
+          key={`${r}-${c}`}
+          className={`tile
+            ${isInitial ? "tile-start" : ""}
+            ${isUserFilled ? "tile-user" : ""}
+            ${isSelected ? "tile-selected" : ""}
+            ${rowFinished ? "row-complete" : ""}
+            ${colFinished ? "col-complete" : ""}
+            ${boxFinished ? "box-complete" : ""}
+            ${(r + 1) % 3 === 0 && r !== 8 ? "horizontal-line" : ""}
+            ${(c + 1) % 3 === 0 && c !== 8 ? "vertical-line" : ""}
+          `}
+          onClick={() => gameStarted && handleCellClick(r, c)}
+        >
+          {gameStarted && !isPaused ? (
+            cell !== "" ? (
+              cell
+            ) : (
+              <div className="tile-note-container">
+                {notes[r] && notes[r][c] ? notes[r][c].join("") : ""}
+              </div>
+            )
+          ) : (
+            ""
+          )}
+        </div>
+      );
+    })
+  )}
+</div>
 
         <div id="digits">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
