@@ -4,11 +4,15 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background:linear-gradient(135deg, #b91b1b, #991c1c);
+
 }
 
 #root{
-  height:100%;
-  width: 100%;
+  height:100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 /* ===============================
    MAIN WRAPPER
@@ -54,7 +58,7 @@ body {
   top: 150px;
   width: 1000px;
   height: 1000px;
-  background: radial-gradient(circle, rgba(255,200,100,0.9) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,200,100,0.87) 0%, transparent 70%);
   animation: glowPulse 3s infinite alternate;
 }
 
@@ -238,7 +242,7 @@ body {
 .footer-text {
   position: absolute;
   bottom: 20px;
-  font-size: 0.9rem;
+  font-size: 40px;
   letter-spacing: 2px;
   opacity: 0.7;
 }
