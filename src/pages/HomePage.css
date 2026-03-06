@@ -4,9 +4,16 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #140c08;
+  background:linear-gradient(135deg, #b91b1b, #991c1c);
+
 }
 
+#root{
+  height:100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
 /* ===============================
    MAIN WRAPPER
 ================================= */
@@ -14,8 +21,8 @@ body {
 .home-wrapper {
   height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(255,215,120,0.3) 0%, transparent 50%),
-    linear-gradient(135deg, #3b1f0f, #1a0e07);
+    radial-gradient(circle at top, rgba(182, 174, 174, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, #b91b1b, #991c1c);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,10 +55,10 @@ body {
 
 .light-glow {
   position: absolute;
-  top: -120px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255,200,100,0.6) 0%, transparent 70%);
+  top: 150px;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, rgba(255,200,100,0.87) 0%, transparent 70%);
   animation: glowPulse 3s infinite alternate;
 }
 
@@ -89,7 +96,7 @@ body {
 
 .games-container {
   display: flex;
-  gap: 90px;
+  gap: 20px;
 }
 
 /* ===============================
@@ -139,20 +146,35 @@ body {
 ================================= */
 
 .sudoku {
+  height:400px;
+  width:300px;
   border-color: #ff6b6b;
+  background:rgba(241, 162, 42, 0.87);
   box-shadow:
     0 20px 40px rgba(0,0,0,0.6),
     0 0 30px rgba(255,107,107,0.6);
 }
 
 .chess {
+  background: rgba(51, 51, 208, 0.87);
   border-color: #4dabf7;
+  height:400px;
+  width:300px;
+
   box-shadow:
     0 20px 40px rgba(0,0,0,0.6),
     0 0 35px rgba(77,171,247,0.7);
 }
 
 .reversi {
+  height:400px;
+  width:300px;
+  background: linear-gradient(
+    to right,
+    #2e8b57,
+    #3da86a,
+    #2e8b57
+  );
   border-color: #51cf66;
   box-shadow:
     0 20px 40px rgba(0,0,0,0.6),
@@ -220,7 +242,7 @@ body {
 .footer-text {
   position: absolute;
   bottom: 20px;
-  font-size: 0.9rem;
+  font-size: 40px;
   letter-spacing: 2px;
   opacity: 0.7;
 }

@@ -18,7 +18,7 @@ function HomePage() {
     <div className={`home-wrapper ${flash ? "flash" : ""}`}>
       <div className="light-glow"></div>
 
-      <h1 className="title">ROYAL STREET GAME CLUB</h1>
+      <h1 className="title">Interactive Multi - Game Platform</h1>
 
       <div className="games-container">
         <div
@@ -43,7 +43,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="footer-text">Evening Board Games Experience</div>
+      <div className="footer-text">A Passion project</div>
     </div>
   );
 }
