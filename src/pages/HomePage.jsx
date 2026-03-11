@@ -43,7 +43,7 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="footer-text">A Passion project</div>
+      <div className="footer-text">Web Programming Project</div>
     </div>
   );
 }
